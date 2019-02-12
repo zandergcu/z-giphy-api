@@ -7,17 +7,19 @@ block content
       
       div(v-if="!submitted" v-cloak)
         p Search for gifs from Giphy!
-        button( @click="doSomething" ) Get Data
+        form( @submit.prevent="doSomething" )
+          input( type="text" placeholder="Enter search term..." v-model="searchTerm" )  
+          input( type="submit" value="Get Gifs from Giphy" )
         
       div(v-if="loading" v-cloak)
         p Loading... 
         
       div(v-if="error" v-cloak)
-        p There was an error - check your network connection
+        p There was an error - check your network connection or enter a valid search term
       
       div(v-if="submitted" v-cloak)
-        p  Here are 5 gifs for your search: yayy
-        ul( v-for="gif in gifs" )
-          li
-            p {{gif.title}}
-            img( :src="gif.url" :alt="gif.slug")
+        p  Here are 5 gifs for your search: "{{searchTerm}}"
+        a(href="/") Search again
+        div( v-for="gif in gifs" )
+          p {{gif.title}}
+          iframe( :src="gif.embed_url" )

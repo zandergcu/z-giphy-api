@@ -24,7 +24,8 @@ app.use(helmet.contentSecurityPolicy({
     defaultSrc: ["'self'"],
     scriptSrc: ["'self'", "https://cdn.jsdelivr.net/", "https://unpkg.com/", "'unsafe-eval'"],
     connectSrc: ["https://api.giphy.com"],
-    imgSrc: ["'self'", "https://giphy.com"]
+    imgSrc: ["'self'", "https://giphy.com"],
+    frameSrc: ["https://giphy.com"]
   }
 }))
 
