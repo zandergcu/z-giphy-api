@@ -1,0 +1,23 @@
+extends layout
+
+block content
+  
+    div#app( v-if="isVueWorking" v-cloak )
+      h1= title
+      
+      div(v-if="!submitted" v-cloak)
+        p Search for gifs from Giphy!
+        button( @click="doSomething" ) Get Data
+        
+      div(v-if="loading" v-cloak)
+        p Loading... 
+        
+      div(v-if="error" v-cloak)
+        p There was an error - check your network connection
+      
+      div(v-if="submitted" v-cloak)
+        p  Here are 5 gifs for your search: yayy
+        ul( v-for="gif in gifs" )
+          li
+            p {{gif.title}}
+            img( :src="gif.url" :alt="gif.slug")
